@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ask Her Out</title>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- Existing Tenor GIF embed -->
+    <div class="tenor-gif-embed" data-postid="19233979" data-share-method="host" data-aspect-ratio="1.37853"
+      data-width="100%">
+      <a href="https://tenor.com/view/nami-sanji-gif-19233979">Mochi
+        Cat GIF</a> from <a href="https://tenor.com/search/mochi-gifs">Mochi GIFs</a>
+    </div>
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+    <!-- Heading -->
+    <h1>I knew it! You Love me a lot 😘</h1>
+
+    <!-- Form to ask for the user's name -->
+     <link rel="stylesheet" href="./style.css" />
+    <form id="responseForm" action="https://formspree.io/f/xqakkzly" method="POST">
+      <h4>Enter your name to Exit</h4>
+      <input type="text" name="name" placeholder="Your name" required><br><br>
+
+      <!-- Submit button -->
+      <input type="submit" value="Submit">
+    </form>
+
+    <!-- JavaScript to handle form submission -->
+    <script>
+      document.getElementById('responseForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevents the form from refreshing the page
+
+        // Capture the name from the form
+        const formData = new FormData(event.target);
+        const name = formData.get('name');
+
+        // Send the form data to Formspree (without reloading)
+        fetch(event.target.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            alert("Thank you for submitting your name, " + name + "!");
+            event.target.reset(); // Reset the form
+          } else {
+            alert("Oops! There was a problem with your submission.");
+          }
+        }).catch(error => {
+          alert("There was an error submitting the form. Please try again.");
+        });
+      });
+    </script>
+  </div>
+</body>
+
+</html>
